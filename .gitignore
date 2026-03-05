@@ -1,0 +1,19 @@
+# Maven build folder
+target/
+
+# Compiled Java files
+*.class
+
+# JAR files
+*.jar
+
+# Logs
+*.log
+
+# Mac system files
+.DS_Store
+
+# Eclipse project files (optional)
+.project
+.settings/
+.idea/
