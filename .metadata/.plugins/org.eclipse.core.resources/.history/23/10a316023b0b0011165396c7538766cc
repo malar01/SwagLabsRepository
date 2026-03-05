@@ -1,0 +1,10 @@
+package Static;
+
+public class StaticDemo {
+
+	public static void main(String[] args) {
+		Counter count=new Counter();
+		count.
+	}
+
+}

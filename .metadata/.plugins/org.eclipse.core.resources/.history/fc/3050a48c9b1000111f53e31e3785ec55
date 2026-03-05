@@ -1,0 +1,14 @@
+package herokuapp.com.Pattern;
+
+public class InvertedTriangle {
+
+	public static void main(String[] args) {
+		// * * * * *
+		// * * * *
+		// * * *
+		// * *
+		// *
+
+	}
+
+}

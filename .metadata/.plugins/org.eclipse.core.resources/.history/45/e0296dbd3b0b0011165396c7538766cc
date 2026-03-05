@@ -1,0 +1,12 @@
+package Static;
+
+public class Counter {
+	public static int count=0;
+	
+	public Counter() {
+		count++;
+	}
+	public static void displayTotal() {
+		System.out.println("Total count is"+count);
+	}
+}

@@ -1,0 +1,15 @@
+package herokuapp.com.JAVA.PGM;
+
+public class MultipleTable {
+
+	public static void main(String[] args) {
+		int num=5;
+		int mul=0;
+		for(int i=1;i<=num;i++) {
+			 mul=mul*i;
+			System.out.println(mul);
+		}
+
+	}
+
+}

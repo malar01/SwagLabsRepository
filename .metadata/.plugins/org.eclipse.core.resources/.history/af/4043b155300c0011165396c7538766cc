@@ -1,0 +1,11 @@
+package UtilityPackage;
+
+import java.io.FileInputStream;
+
+public class ExcelUtility {
+
+	
+	FileInputStream file=new FileInputStream("/Users/macbook/Documents/TestData.xlsx");
+	
+	
+}

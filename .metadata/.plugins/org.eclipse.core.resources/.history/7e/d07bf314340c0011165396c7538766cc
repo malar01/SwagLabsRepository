@@ -1,0 +1,30 @@
+package UtilityPackage;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class ExcelUtility {
+
+	public void readExcel() throws IOException {
+	FileInputStream file=new FileInputStream("/Users/macbook/Documents/TestData.xlsx");
+	Workbook workbook=new XSSFWorkbook(file);
+	Sheet sheet=workbook.getSheet("Sheet1");
+	
+	int rowCount=sheet.getPhysicalNumberOfRows();
+	
+	for(int i=1;i<=rowCount;i++) {// Start from 1 to skip header
+		
+		Row row=sheet.getRow(i);
+		String username=row.getCell(0).getStringCellValue();
+		String password=row.getCell(1).getStringCellValue();
+		System.out.println(username+"|"+password);
+	}
+	workbook.close();
+	file.close();
+	}
+}

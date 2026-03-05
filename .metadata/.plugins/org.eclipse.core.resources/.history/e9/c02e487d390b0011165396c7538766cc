@@ -1,0 +1,10 @@
+package Constructor;
+
+public class ConstructorDemo {
+
+	public static void main(String[] args) {
+	Car c=new Car("Tesla Model 3",2023);
+		c.displayInfo();
+	}
+
+}

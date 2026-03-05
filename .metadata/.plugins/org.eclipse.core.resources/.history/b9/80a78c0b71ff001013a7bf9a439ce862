@@ -1,0 +1,59 @@
+package Base;
+
+import java.time.Duration;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.safari.SafariDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+
+import UtilityPackage.ConfigReader;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class Base {
+	
+	protected WebDriver driver;
+	
+
+	@BeforeMethod //TestNG will run this before each test method.
+	public void setUp() {
+		String browser=ConfigReader.getProperty("browser");
+		String url=ConfigReader.getProperty("url");
+		int wait=Integer.parseInt(ConfigReader.getProperty("timeout"));
+		
+	//Instantiate webdriver based on browser type
+		switch(browser.toLowerCase()) { //switch-case → decides which browser to launch.
+		case "chrome":
+			WebDriverManager.chromedriver().setup(); //→ ensures the ChromeDriver binary is available.
+			driver=new ChromeDriver();  //→ creates a new browser instance
+			break;
+		case "edge":
+			WebDriverManager.edgedriver().setup();
+			driver=new EdgeDriver();
+			break;
+		case "safari":
+			driver=new SafariDriver();
+			break;
+			default:
+				throw new RuntimeException("Unsupported Browser:"+ browser);
+		}
+		//browser setup
+		driver.manage().window().maximize(); //→ removes any stored cookies for a clean session.
+		driver.manage().deleteAllCookies();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(wait)); //→ tells Selenium to wait up to wait seconds for elements to appear before throwing an exception.
+		
+		driver.get(url);
+		System.out.println("Browser : "+browser+ "Navigate to :" +url);
+	}
+	@AfterMethod //→ runs after each test method.
+	public void tearDown() {
+		if(driver!=null) { //-> Checks if the driver exists
+		driver.quit(); //->closes all browser windows and ends the session.
+		System.out.println("Browser closed successfully");
+	}
+}
+
+}
+

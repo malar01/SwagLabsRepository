@@ -1,0 +1,47 @@
+package testNG;
+
+import org.testng.annotations.Test;
+
+import org.testng.annotations.BeforeMethod;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+
+public class NewTest {
+	WebDriver driver;
+	TC1="Verify valid credentials"
+	@Test (priority=2)
+  public void verifyLoginWithValidCredencials() {
+	//driver.findElement(By.linkText("Basic Auth")).click();
+	  driver.get("https://the-internet.herokuapp.com/login");
+	  driver.findElement(By.id("username")).sendKeys("tomsmith");
+	  driver.findElement(By.id("password")).sendKeys("SuperSecretPassword!");
+	  String actualMessage=driver.findElement(By.id("flash")).getText();
+	  String expectedMessage="You logged into a secure area!";
+	  Assert.assertEquals(actualMessage, expectedMessage);
+	  System.out.println("The actual Message displayed is : "+actualMessage);
+	  
+  }
+	//TC2="Verify invalid credentials"
+  @Test(priority=1) 
+  public void verifyLoginWithInvalidCredentials() {
+	  driver.get("https://wrong:wrong@the-internet.herokuapp.com/basic_auth");
+	  String pageSource=driver.getPageSource();
+	  System.out.println(pageSource);
+	  Assert.assertFalse(pageSource.contains("Congratulations! You must have the proper credentials."),"Invalid login should not succeed");
+  }
+  @BeforeMethod
+  public void beforeMethod() {
+	  //WebDriverManager.chromedriver().setup();
+	  driver=new ChromeDriver();
+	 // driver.get("https://the-internet.herokuapp.com");
+  }
+
+  @AfterMethod
+  public void afterMethod() {
+//	  driver.quit();
+  }
+
+}

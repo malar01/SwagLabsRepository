@@ -1,0 +1,10 @@
+package UtilityPackage;
+
+import java.io.FileInputStream;
+
+public class ReadExcel {
+
+	FileInputStream file=new FileInputStream("/Users/macbook/Documents/TestData.xlsx");
+	
+	
+}

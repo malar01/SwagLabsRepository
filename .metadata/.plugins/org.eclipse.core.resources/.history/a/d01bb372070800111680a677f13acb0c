@@ -1,0 +1,21 @@
+package herokuapp.com;
+
+import java.util.Scanner;
+
+public class CheckPrime {
+
+	public static void main(String[] args) {
+		//PrimeNumber has two divisor ->number divisible by itself and 1
+		//zero and 1 are not a prime number
+	Scanner sc=new Scanner(System.in);
+	int number=sc.nextInt();
+	
+	for(int i=2;i<number;i++) {
+		if(number%2==0) {
+			System.out.println("The number "+number+" is prime");
+		} else {
+			System.out.println("The number "+number+" is not prime");
+		}
+	}
+	}
+}

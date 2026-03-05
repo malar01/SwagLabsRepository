@@ -1,0 +1,21 @@
+package TestScripts;
+
+import org.testng.Assert;
+
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+
+public class APITest {
+	public static void main(String arg[]) {
+		Response response=RestAssured.get("https://reqres.in/api/users/2");
+		Assert.assertEquals(response.getStatusCode(), 200);
+		int statusCode=response.getStatusCode();
+		System.out.println("Status Code : "+ statusCode);
+		if(statusCode==200) {
+			System.out.println("Test Passed");
+		} else {
+			System.out.println("Test Failed");
+		}
+		
+	}
+}

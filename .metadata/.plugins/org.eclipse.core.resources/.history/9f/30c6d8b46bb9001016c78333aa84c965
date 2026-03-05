@@ -1,0 +1,30 @@
+package com.selenium.project1;
+
+import org.bouncycastle.oer.its.ieee1609dot2.basetypes.Duration;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Wait;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class FluentWait {
+
+	public static void main(String[] args) {
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://demoqa.com/progress-bar");
+		
+		
+		WebElement buttonstart=driver.findElement(By.xpath("//button(@id='startStopButton')"));
+		buttonstart.click();
+		
+		//create fluent wait instance
+		Wait<WebDriver> wait = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(20))          // total wait time
+                .pollingEvery(Duration.ofMillis(500))         // check every 0.5s
+                .ignoring(Exception.class); 
+
+}
+}

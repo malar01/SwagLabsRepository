@@ -1,0 +1,12 @@
+package herokuapp.com.JAVA.PGM;
+
+public class CountDupliChar {
+
+	public static void main(String[] args) {
+		String str="Programming";
+		//convert string to char array ,[p,r,o,g,r,a,m,m,i,n,g]
+		char[] ch=str.toCharArray();
+		
+		
+	}
+}

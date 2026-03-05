@@ -1,0 +1,106 @@
+package herokuapp.com;
+
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeMethod;
+
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+
+public class NewTest {
+	WebDriver driver;
+	//TC1="Verify valid credentials"
+	@Test (priority=1)
+  public void verifyLoginWithValidCredencials() {
+	  driver.get("https://the-internet.herokuapp.com/login");
+	  driver.findElement(By.id("username")).sendKeys("tomsmith");
+	  driver.findElement(By.id("password")).sendKeys("SuperSecretPassword!");
+	  driver.findElement(By.xpath("//button[@class='radius']")).click();
+	  
+	  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+	  WebElement flashMessage = wait.until(
+	          ExpectedConditions.visibilityOfElementLocated(By.id("flash"))
+	  );
+
+	  String actualMessage = flashMessage.getText();
+	  Assert.assertTrue(actualMessage.contains("You logged into a secure area!"),"Login success message not displayed");
+	  System.out.println("The actual Message displayed is : "+actualMessage);
+	  
+  }
+	//Tc2="Verify invalid Credentials"
+	@Test(priority=2)
+	public void verifyInvalidCredentials() {
+		driver.get("https://the-internet.herokuapp.com/login");
+		driver.findElement(By.id("username")).sendKeys("tomsmith");
+		driver.findElement(By.id("password")).sendKeys("test!");
+		driver.findElement(By.xpath("//button[@class='radius']")).click();
+		WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
+	
+		WebElement invalidMessage=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("flash")));
+		
+		
+		String actualM=invalidMessage.getText();
+		Assert.assertTrue(actualM.contains("Your password is invalid!"),"Login failed Message not displayed");
+		System.out.println("The message displayed for invalid login is : "+ actualM);
+	}
+	//TC4="Verify logout functionality credentials"
+  @Test(priority=3) 
+  public void verifyLogoutFunctionality() {
+	  driver.get("https://the-internet.herokuapp.com/login");
+	  driver.findElement(By.id("username")).sendKeys("tomsmith");
+	  driver.findElement(By.id("password")).sendKeys("SuperSecretPassword!");
+	  driver.findElement(By.xpath("//button[@class='radius']")).click();
+	  
+	  driver.findElement(By.xpath("//i[contains(@class,'icon-2x icon-signout')]")).click();// used contains when there is multiple class exists
+	  WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
+	  WebElement logoutmessage=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("flash")));
+	  String logoutM=logoutmessage.getText();
+	  Assert.assertTrue(logoutM.contains("You logged out of the secure area!"),"Loggedout message not displayed");
+	  System.out.println("The message displayed for Logout functionality is : "+ logoutM);
+  }
+  
+  @Test(priority=4)
+  public void verifySelectCheckboxIfNotSelected() {
+	  driver.get("https://the-internet.herokuapp.com/checkboxes");
+	  WebElement checkbox1=driver.findElement(By.xpath("//input[@type='checkbox'][1]"));
+	  boolean selected=checkbox1.isSelected();
+	  if(!selected) {
+		  checkbox1.click();
+		  System.out.println("Checkbox1 was not selected, now selected");
+	  } else {
+			  System.out.println("Checkbox1 is already selected");
+	  }
+	  //unselect checkbox if already selected
+	  WebElement checkbox2=driver.findElement(By.xpath("//input[@type='checkbox'][2]"));
+	  boolean unselect=checkbox2.isSelected();
+	  if(!unselect) {
+		  checkbox2.click();
+		  System.out.println("Checkbox2 is unselected");
+		  else {
+			  System.out.println("Checkbox2 is already selected");
+		  }
+	  }
+	  
+  }
+  
+  @BeforeMethod
+  public void beforeMethod() {
+	  //WebDriverManager.chromedriver().setup();
+	  driver=new ChromeDriver();
+  }
+ 
+
+  @AfterMethod
+  public void afterMethod() {
+	  driver.quit();
+  }
+
+}

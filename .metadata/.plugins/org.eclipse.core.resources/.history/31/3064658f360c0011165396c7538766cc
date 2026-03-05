@@ -1,0 +1,27 @@
+package TestScripts;
+
+import java.io.IOException;
+
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import Base.BaseClass;
+import PageClass.LoginPageClass;
+import UtilityPackage.ExcelUtility;
+
+public class LoginTestExcel extends BaseClass {
+	LoginPageClass login;
+
+	@DataProvider(name="LoginTestExcel")
+	public Object[][] loginData() throws IOException{
+		return ExcelUtility.getExcelData("/Users/macbook/Documents/TestData1.xlsx", "Sheet1");
+	}
+	@Test(dataProvider="LoginTestExcel")
+	public void loginDataFromExcel(String username,String password) {
+		login=new LoginPageClass(driver);
+		login.enterUsername(username);
+		login.enterPassword(password);
+		login.clickLoginButton();
+		
+	}
+}

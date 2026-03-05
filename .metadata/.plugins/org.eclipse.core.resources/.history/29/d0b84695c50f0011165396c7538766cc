@@ -1,0 +1,11 @@
+package herokuapp.com.JAVA.PGM;
+
+public class ReverseSentChangeWordOrder {
+
+	public static void main(String[] args) {
+		String str="Java Test Selenium";
+		String[] words=str.split(" ");
+
+	}
+
+}
