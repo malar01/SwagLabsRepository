@@ -1,0 +1,56 @@
+package testNG;
+
+import org.testng.annotations.Test;
+
+import org.testng.annotations.BeforeMethod;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+
+public class NewTest {
+	WebDriver driver;
+	//TC1="Verify valid credentials"
+	@Test (priority=2)
+  public void verifyLoginWithValidCredencials() {
+	  driver.get("https://the-internet.herokuapp.com/login");
+	  driver.findElement(By.id("username")).sendKeys("tomsmith");
+	  driver.findElement(By.id("password")).sendKeys("SuperSecretPassword!");
+	  driver.findElement(By.xpath("//button[@class='radius']")).click();
+	  String actualMessage=driver.findElement(By.xpath("//div[@id='flash-messages']")).getText();
+	  String expectedMessage="You logged into a secure area!";
+	  Assert.assertEquals(actualMessage, expectedMessage);
+	  System.out.println("The actual Message displayed is : "+actualMessage);
+	  
+  }
+	/*//Tc2="Verify invalid Credentials"
+	@Test(priority=2)
+	public void verifyInvalidCredentials() {
+		driver.get("https://the-internet.herokuapp.com/login");
+		driver.findElement(By.id("username")).sendKeys("tomsmith");
+		driver.findElement(By.id("password")).sendKeys("test!");
+		String actualM=driver.findElement(By.id("flash")).getText();
+		String expectedM="Your password is invalid!";
+	}
+	//TC4="Verify logout functionality credentials"
+  @Test(priority=1) 
+  public void verifyLogoutFunctionality() {
+	  driver.findElement(By.className("icon-2x icon-signout")).click();
+	  String actualResult=driver.findElement(By.id("flash")).getText();
+	  String expectedResult="You logged out of the secure area!";
+	  Assert.assertEquals(actualResult, expectedResult);
+  }*/
+  @BeforeMethod
+  public void beforeMethod() {
+	  //WebDriverManager.chromedriver().setup();
+	  driver=new ChromeDriver();
+	 // driver.get("https://the-internet.herokuapp.com");
+  }
+
+  @AfterMethod
+  public void afterMethod() {
+//	  driver.quit();
+  }
+
+}

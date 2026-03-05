@@ -1,0 +1,58 @@
+package Base;
+
+import java.time.Duration;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.safari.SafariDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+
+import UtilityPackage.ConfigReader;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class Base {
+	protected WebDriver driver; // assessible by subclasses
+	
+	//initialize the browser
+	@BeforeMethod
+	private void setUp() {
+		//get browser type, url, wait from ConfigReader utility class
+		String browser=ConfigReader.getProperty("browser");
+		String url=ConfigReader.getProperty("url");
+		
+		int timeout = Integer.parseInt(ConfigReader.getProperty("timeout"));
+		
+		//Instantiate WebDriver based on browser type
+		switch (browser.toLowerCase()){
+			case "chrome": 
+				WebDriverManager.chromedriver().setup();
+				driver=new ChromeDriver();
+				break;
+			case "safari":
+				driver=new SafariDriver();
+				break;
+			case "edge":
+				WebDriverManager.edgedriver().setup();
+				driver=new EdgeDriver();
+				break;
+			default:
+			throw new RuntimeException("Unsupported Browser: "+ browser);		
+		}
+		
+		//Browser setup
+		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(wait));
+		driver.get(url);
+		System.out.println("Browser is :"+browser+"Navigate to : "+url);
+	}
+	@AfterMethod
+	public void tearDown() {
+		if(driver !=null) {
+			driver.quit();//close all browser windows
+			System.out.println("Browser closed successfully");
+		}
+	}
+}

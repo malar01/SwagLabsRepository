@@ -1,0 +1,14 @@
+package PageClass;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+
+public class CheckBoxPageClass {
+
+	private WebDriver driver;
+	
+	public CheckBoxPageClass(WebDriver driver) {
+		this.driver=driver;
+		PageFactory.initElements(driver,this);
+	}
+}

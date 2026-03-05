@@ -1,0 +1,13 @@
+package Encapsulation;
+
+public class EncapsulationDemo {
+
+	public static void main(String[] args) {
+		Student student=new Student();
+		student.setName("Roshan");
+		student.setAge(20);
+		System.out.println("Name is : " + student.getName());
+		System.out.println("Name is : " + student.getAge());
+	}
+
+}

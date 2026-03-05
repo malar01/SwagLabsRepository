@@ -1,0 +1,19 @@
+package herokuapp.com;
+
+import java.util.Scanner;
+
+public class Fibinocci {
+
+	public static void main(String[] args) {
+		//Print first N Fibonacci numbers.
+		//0,1,1,2,3,5,8,13
+		
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter a number");
+		int number=sc.nextInt();
+		for(int i=0;i<=number;i++) {
+			
+		}
+	}
+
+}

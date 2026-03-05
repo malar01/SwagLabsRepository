@@ -1,0 +1,21 @@
+package Constructor;
+
+public class Car {
+
+	private String model;
+	private int year;
+	private String type;
+	
+	public Car(String model,int year) {
+		this.model=model;
+		this.year=year;
+	}
+	public Car(String mode,int year,String type) {
+		this.model=model;
+		this.year=year;
+		this.type=type;
+	}
+	public void displayInfo() {
+		System.out.println(" Model : "+ model + " Year : "+ year + " Type " + type);
+	}
+}

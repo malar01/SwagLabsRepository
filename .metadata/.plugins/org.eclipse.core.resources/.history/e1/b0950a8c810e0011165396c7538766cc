@@ -1,0 +1,54 @@
+package TestScripts;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+
+public class APITest {
+	@Test
+	public void verifyUserAPI() {
+		//set base url
+		RestAssured.baseURI="https://jsonplaceholder.typicode.com";
+		//send GET request
+		Response response=RestAssured.get("/users/1");
+		//Print full repsonses
+		System.out.println("Response Body");
+		System.out.println(response.getBody().asString());
+		//get status code
+		int statusCode=response.getStatusCode();
+		System.out.println("Status Code : "+ statusCode);
+		//Assertion
+		Assert.assertEquals(statusCode, 200);
+		
+	}
+}
+/*Output 
+Response Body
+{
+  "id": 1,
+  "name": "Leanne Graham",
+  "username": "Bret",
+  "email": "Sincere@april.biz",
+  "address": {
+    "street": "Kulas Light",
+    "suite": "Apt. 556",
+    "city": "Gwenborough",
+    "zipcode": "92998-3874",
+    "geo": {
+      "lat": "-37.3159",
+      "lng": "81.1496"
+    }
+  },
+  "phone": "1-770-736-8031 x56442",
+  "website": "hildegard.org",
+  "company": {
+    "name": "Romaguera-Crona",
+    "catchPhrase": "Multi-layered client-server neural-net",
+    "bs": "harness real-time e-markets"
+  }
+}
+Status Code : 200
+PASSED: TestScripts.APITest.verifyUserAPI
+*/

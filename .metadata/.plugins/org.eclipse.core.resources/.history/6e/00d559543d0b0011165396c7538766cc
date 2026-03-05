@@ -1,0 +1,9 @@
+package Inheritance;
+
+public class Cat extends Dog	 {
+
+	@Override
+	public void eat() {
+		System.out.println("Cat drinks Milk");
+	}
+}

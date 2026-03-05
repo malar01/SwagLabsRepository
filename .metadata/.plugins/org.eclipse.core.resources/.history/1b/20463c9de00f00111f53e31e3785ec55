@@ -1,0 +1,11 @@
+package herokuapp.com.JAVA.PGM;
+
+public class CountDupliHashMap {
+
+	public static void main(String[] args) {
+		String str="Programming";
+		
+
+	}
+
+}

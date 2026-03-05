@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.testng.eclipse.launchconfig">
+    <stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.eclipse.m2e.launchconfig.classpathProvider"/>
+    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.testng.remote.RemoteTestNG"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="project_baffalocart"/>
+    <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.m2e.launchconfig.sourcepathProvider"/>
+    <mapAttribute key="org.testng.eclipse.ALL_CLASS_METHODS"/>
+    <listAttribute key="org.testng.eclipse.CLASS_TEST_LIST">
+        <listEntry value="com.buffalocart.pages.AddRollPage"/>
+        <listEntry value="com.buffalocart.testscripts.AddRolePageTest"/>
+        <listEntry value="com.buffalocart.pages.AddUsersPage"/>
+        <listEntry value="com.buffalocart.testscripts.UsersPageTest"/>
+        <listEntry value="com.buffalocart.testscripts.ResetPasswordTest"/>
+        <listEntry value="com.buffalocart.pages.SalesCommAgentsPage"/>
+        <listEntry value="com.buffalocart.testscripts.AddUsersPageTest"/>
+        <listEntry value="com.buffalocart.utilities.ExcelUtility"/>
+        <listEntry value="com.buffalocart.testscripts.HomePageTest"/>
+        <listEntry value="com.buffalocart.utilities.RandomDataUtility"/>
+        <listEntry value="com.buffalocart.pages.RolePage"/>
+        <listEntry value="com.buffalocart.testscripts.SalesCommAgentsTest"/>
+        <listEntry value="com.buffalocart.utilities.TableUtility"/>
+        <listEntry value="com.buffalocart.constants.Constants"/>
+        <listEntry value="com.buffalocart.pages.EditUserPage"/>
+        <listEntry value="com.buffalocart.pages.UsersPage"/>
+        <listEntry value="com.buffalocart.pages.ViewUserPage"/>
+        <listEntry value="com.buffalocart.utilities.ObjectUtility"/>
+        <listEntry value="com.buffalocart.testscripts.LoginPageTest"/>
+        <listEntry value="com.buffalocart.testscripts.EditRollPageTest"/>
+        <listEntry value="com.buffalocart.pages.EditRollPage"/>
+        <listEntry value="com.buffalocart.utilities.PageUtility"/>
+        <listEntry value="com.buffalocart.testscripts.RolePageTest"/>
+        <listEntry value="com.buffalocart.automationcore.Base"/>
+        <listEntry value="com.buffalocart.utilities.DateUtility"/>
+        <listEntry value="com.buffalocart.utilities.WaitUtility"/>
+        <listEntry value="com.buffalocart.pages.ResetPasswordPage"/>
+        <listEntry value="com.buffalocart.pages.LoginPage"/>
+        <listEntry value="com.buffalocart.extendreportlistner.ExtendReportListner"/>
+        <listEntry value="com.buffalocart.pages.HomePage"/>
+    </listAttribute>
+    <listAttribute key="org.testng.eclipse.METHOD_TEST_LIST"/>
+    <listAttribute key="org.testng.eclipse.PACKAGE_TEST_LIST"/>
+    <stringAttribute key="org.testng.eclipse.PRE_DEFINED_LISTENERS" value=""/>
+    <intAttribute key="org.testng.eclipse.TYPE" value="1"/>
+</launchConfiguration>

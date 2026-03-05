@@ -1,0 +1,48 @@
+package Encapsulation;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class EncapsulationDemo {
+
+	public static void main(String[] args) {
+		
+		Scanner sc=new Scanner(System.in);
+		ArrayList<Student> students=new ArrayList<>();
+		System.out.println("Enter how many students wants to enter");
+		int stud=sc.nextInt();
+		
+		for(int i=0;i<stud;i++) {
+			System.out.println("Enter details of Student"+(i+1));
+			Student student=new Student();
+			System.out.println("Enter Name");
+			student.setName(sc.nextLine());
+			
+			System.out.println("Enter Age");
+			student.setAge(sc.nextInt());
+			
+			System.out.println("Enter Name");
+			student.setName(sc.nextLine());
+			
+			System.out.println("Enter Name");
+			student.setGrade(sc.next().charAt(0));
+			
+			students.add(student);
+		}
+		//display all students
+		System.out.println("\n All students entered");
+		for(Student s:students) {
+			s.displayInfo();
+		}
+		sc.close();
+		
+		/*
+		student.setName("Roshan");
+		student.set
+		
+		Age(20);
+		System.out.println("Name is : " + student.getName());
+		System.out.println("Name is : " + student.getAge());
+	}*/
+
+}

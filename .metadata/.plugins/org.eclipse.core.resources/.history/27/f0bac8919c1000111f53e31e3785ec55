@@ -1,0 +1,14 @@
+package herokuapp.com.Pattern;
+
+public class Pyramid {
+
+	public static void main(String[] args) {
+		//     *
+		 //   * *
+		 //  * * *
+		 // * * * *
+		 //* * * * *
+
+	}
+
+}

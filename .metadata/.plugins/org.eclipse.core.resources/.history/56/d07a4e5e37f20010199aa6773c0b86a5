@@ -1,0 +1,150 @@
+package herokuapp.com;
+
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeMethod;
+
+import java.time.Duration;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+
+public class NewTest {
+	WebDriver driver;
+	//TC1="Verify valid credentials"
+	@Test (priority=1,enabled=false)
+  public void verifyLoginWithValidCredencials() {
+	  driver.get("https://the-internet.herokuapp.com/login");
+	  driver.findElement(By.id("username")).sendKeys("tomsmith");
+	  driver.findElement(By.id("password")).sendKeys("SuperSecretPassword!");
+	  driver.findElement(By.xpath("//button[@class='radius']")).click();
+	  
+	  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+	  WebElement flashMessage = wait.until(
+	          ExpectedConditions.visibilityOfElementLocated(By.id("flash"))
+	  );
+
+	  String actualMessage = flashMessage.getText();
+	  Assert.assertTrue(actualMessage.contains("You logged into a secure area!"),"Login success message not displayed");
+	  System.out.println("The actual Message displayed is : "+actualMessage);
+	  
+  }
+	//Tc2="Verify invalid Credentials"
+	@Test(priority=2,enabled=false)
+	public void verifyInvalidCredentials() {
+		driver.get("https://the-internet.herokuapp.com/login");
+		driver.findElement(By.id("username")).sendKeys("tomsmith");
+		driver.findElement(By.id("password")).sendKeys("test!");
+		driver.findElement(By.xpath("//button[@class='radius']")).click();
+		WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
+	
+		WebElement invalidMessage=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("flash")));
+		
+		
+		String actualM=invalidMessage.getText();
+		Assert.assertTrue(actualM.contains("Your password is invalid!"),"Login failed Message not displayed");
+		System.out.println("The message displayed for invalid login is : "+ actualM);
+	}
+	//TC4="Verify logout functionality credentials"
+  @Test(priority=3,enabled=false) 
+  public void verifyLogoutFunctionality() {
+	  driver.get("https://the-internet.herokuapp.com/login");
+	  driver.findElement(By.id("username")).sendKeys("tomsmith");
+	  driver.findElement(By.id("password")).sendKeys("SuperSecretPassword!");
+	  driver.findElement(By.xpath("//button[@class='radius']")).click();
+	  
+	  driver.findElement(By.xpath("//i[contains(@class,'icon-2x icon-signout')]")).click();// used contains when there is multiple class exists
+	  WebDriverWait wait=new WebDriverWait(driver, Duration.ofSeconds(10));
+	  WebElement logoutmessage=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("flash")));
+	  String logoutM=logoutmessage.getText();
+	  Assert.assertTrue(logoutM.contains("You logged out of the secure area!"),"Loggedout message not displayed");
+	  System.out.println("The message displayed for Logout functionality is : "+ logoutM);
+  }
+  
+  @Test(priority=4,enabled=false)
+  public void verifySelectCheckboxIfNotSelected() {
+	  driver.get("https://the-internet.herokuapp.com/checkboxes");
+	// Checkbox 1 – Select if not selected
+	  WebElement checkbox1=driver.findElement(By.xpath("(//input[@type='checkbox'])[1]"));
+	  if(!checkbox1.isSelected()) {
+		  checkbox1.click();
+		  System.out.println("Checkbox1 was not selected, now selected");
+	  } else {
+			  System.out.println("Checkbox1 is already selected");
+	  }
+	// Checkbox 2 – Unselect if already selected
+	  WebElement checkbox2=driver.findElement(By.xpath("(//input[@type='checkbox'])[2]"));
+	  if(checkbox2.isSelected()) {
+		  checkbox2.click();
+		  System.out.println("Checkbox2 was selected, now unselected");
+	  }
+		  else {
+			  System.out.println("Checkbox2 is already unselected");
+		  }
+	  }
+	  
+  @Test(enabled=false)
+  public void verifySelectOptionByVisibleText() {
+	  driver.get("https://the-internet.herokuapp.com/dropdown");
+	  WebElement dropdown=driver.findElement(By.id("dropdown"));
+	Select sc=new Select(dropdown);  
+	sc.selectByVisibleText("Option 1");
+	String selectedOption=sc.getFirstSelectedOption().getText();
+	Assert.assertEquals(selectedOption, "Option 1","Incorrect Option selected");
+	System.out.println("Option selected by Visible Text is "+ selectedOption);
+	
+	sc.selectByValue("2");
+	//sc.selectByIndex(2);
+  }
+  
+  //JavaScript Alert
+  @Test
+  public void verifyAcceptJSAlert() {
+	  driver.get("https://the-internet.herokuapp.com/javascript_alerts");
+	  driver.findElement(By.xpath("//button[text()='Click for JS Alert']")).click();
+	  Alert alert=driver.switchTo().alert();
+	  String alertText=alert.getText();
+	  alert.accept();
+	  Assert.assertEquals(alertText,"I am a JS Alert");
+	  System.out.println(alertText);
+	//dismiss a confirmation alert
+	// Click JS Confirm button
+	  driver.findElement(By.xpath("//button[text()='Click for JS Confirm']")).click();
+	  
+	// Switch to alert
+	  Alert alertConf=driver.switchTo().alert();
+	  
+	// Validate alert text
+	  String confirmAlert=alertConf.getText();
+	  Assert.assertEquals(confirmAlert, "I am a JS Confirm");
+	  alertConf.dismiss();//click cancel
+	  
+	  //Validate result text displayed on page
+	  WebElement result=driver.findElement(By.id("result"));
+	  String resultText=result.getText();
+	  Assert.assertEquals(resultText, "You clicked: Cancel");
+	  System.out.println(confirmAlert);
+	  System.out.println(resultText);
+	  
+  }
+  @BeforeMethod
+  public void beforeMethod() {
+	  //WebDriverManager.chromedriver().setup();
+	  driver=new ChromeDriver();
+  }
+ 
+
+  @AfterMethod
+  public void afterMethod() {
+	  //driver.quit();
+  }
+
+}

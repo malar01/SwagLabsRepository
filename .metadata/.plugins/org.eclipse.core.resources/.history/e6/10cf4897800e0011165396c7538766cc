@@ -1,0 +1,26 @@
+package TestScripts;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+
+public class APITest {
+	@Test
+	public void verifyUserAPI() {
+		//set base url
+		RestAssured.baseURI="https://reqres.in";
+		//send GET request
+		Response response=RestAssured.get("/api/users/2");
+		//Print full repsonses
+		System.out.println("Response Body");
+		System.out.println(response.getBody().asString());
+		//get status code
+		int statusCode=response.getStatusCode();
+		System.out.println("Status Code : "+ statusCode);
+		//Assertion
+		Assert.assertEquals(statusCode, 200);
+		
+	}
+}

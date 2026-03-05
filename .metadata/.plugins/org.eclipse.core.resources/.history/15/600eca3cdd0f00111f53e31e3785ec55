@@ -1,0 +1,21 @@
+package herokuapp.com.JAVA.PGM;
+
+public class CountDupliChar {
+
+	public static void main(String[] args) {
+		String str="Programming";
+		//convert string to char array ,[p,r,o,g,r,a,m,m,i,n,g]
+		char[] ch=str.toCharArray();
+		//outer loop ->loop select one charcater at a time
+		for(int i=0;i<ch.length;i++) {
+			//inner loop->compare selected char with the remaining characters
+			for(int j=i+1;j<ch.length;j++) {
+				if(ch[i]==ch[j]) {
+					System.out.println("Duplicate character : "+ ch[i]);
+					break;//->Break stops checking once first duplicate is found.
+				}
+			}
+		}
+		
+	}
+}

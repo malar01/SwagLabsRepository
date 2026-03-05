@@ -1,0 +1,13 @@
+package Inheritance;
+
+public class InheritanceDemo {
+
+	public static void main(String[] args) {
+		Cat c=new Cat();
+		c.bark();//own method
+		c.eat();//inherited
+	
+
+	}
+
+}
